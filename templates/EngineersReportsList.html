@@ -1,0 +1,24 @@
+{% load static %}
+
+<h1>MANAGER SIDE</h1>
+<h1><a href="/">Return to home page</a></h1>
+
+<center><h1>Pending Reports For Review</h1></center>
+
+{% for object in object_list %}
+
+
+{% if object.managersign == None or object.managersign == "" %}
+	
+
+<h6>Engineer-sign : <img src="{{object.engineersign}}" style="cursor: pointer; border: 1px solid rgb(199, 200, 201); height: 150px; width: 300px; border-radius: 5px;">
+
+	manager-sign:
+	<a href="{% url 'app:update' object.id %}">Click To Review</a>
+</h6>
+
+<h6>CUSTOMER Name : {{object.CUSTOMER}}</h6>
+	<h6>STORE No : {{object.STORE_NO}}</h6>
+<hr>
+{% endif %}
+{% endfor %}
