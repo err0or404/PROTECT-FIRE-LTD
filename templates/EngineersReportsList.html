@@ -1,24 +1,18 @@
 {% load static %}
-
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<h1 style="float: right;"><a href="/">Return to home page</a></h1>
 <h1>MANAGER SIDE</h1>
-<h1><a href="/">Return to home page</a></h1>
-
 <center><h1>Pending Reports For Review</h1></center>
-
-{% for object in object_list %}
-
-
-{% if object.managersign == None or object.managersign == "" %}
-	
-
-<h6>Engineer-sign : <img src="{{object.engineersign}}" style="cursor: pointer; border: 1px solid rgb(199, 200, 201); height: 150px; width: 300px; border-radius: 5px;">
-
-	manager-sign:
-	<a href="{% url 'app:update' object.id %}">Click To Review</a>
-</h6>
-
-<h6>CUSTOMER Name : {{object.CUSTOMER}}</h6>
-	<h6>STORE No : {{object.STORE_NO}}</h6>
-<hr>
-{% endif %}
-{% endfor %}
+<div class="container">
+	{% for object in object_list %}
+		{% if object.managersign == None or object.managersign == "" %}
+		<div class="sub">
+			<a class="link" href="{% url 'app:update' object.id %}">Click To Review</a>
+			<h2>Engineer-sign : </h2>
+			<img src="{{object.engineersign}}" style="cursor: pointer; border: 1px solid rgb(199, 200, 201); height: 150px; width: 300px; border-radius: 5px;">
+			<h2>CUSTOMER Name : <span>{{object.CUSTOMER}}</span></h2> 
+			<h2>STORE No : <span>{{object.STORE_NO}}</span></h2>
+		</div>
+		{% endif %}
+	{% endfor %}
+</div>
